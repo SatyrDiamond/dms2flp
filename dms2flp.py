@@ -94,7 +94,7 @@ make_flevent(data_FLdt, 10, 0)
 for c, t in enumerate(tracks):
 	make_flevent(data_FLdt, 64, c)
 	make_flevent(data_FLdt, 192, t[0].encode('utf8') + b'\x00')
-	make_flevent(data_FLdt, 65, c)
+	make_flevent(data_FLdt, 65, c+1)
 	make_flevent(data_FLdt, 193, t[0].encode('utf8') + b'\x00')
 
 	note_bin = b''
