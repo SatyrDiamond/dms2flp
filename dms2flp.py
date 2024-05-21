@@ -46,6 +46,8 @@ main_iff_obj.set_sizes(2, 4, False)
 
 tracks = []
 
+ppq = 96
+
 for chunk_obj in main_iff_obj.iter(0, song_data.end):
 	chunkid = int.from_bytes(chunk_obj.id, 'little')
 
@@ -66,13 +68,14 @@ for chunk_obj in main_iff_obj.iter(0, song_data.end):
 					if subchunkid == 2003: note[3] = song_data.uint32()
 				track[1].append(note)
 		tracks.append(track)
+	elif chunkid == 1002: ppq = song_data.uint16()
 
 flpout = open('out.flp', 'wb')
 
 data_FLhd = BytesIO()
 data_FLhd.write((len(tracks)).to_bytes(3, 'big'))
 data_FLhd.write(b'\x00')
-data_FLhd.write((96).to_bytes(2, 'little'))
+data_FLhd.write((ppq).to_bytes(2, 'little'))
 
 data_FLdt = BytesIO()
 
