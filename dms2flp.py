@@ -102,7 +102,7 @@ for c, t in enumerate(tracks):
 
 	note_bin = b''
 
-	for pos, key, vol, dur in t[1]: note_bin += struct.pack('IHHIBBBBBBBB', pos, 16384,c ,dur, key,0,0,0, 64,vol,128,128)
+	for pos, key, vol, dur in t[1]: note_bin += struct.pack('IHHIBBBBBBBB', pos, 16384,c ,dur, key,120,0,0,64,vol,128,128)
 
 	make_flevent(data_FLdt, 224, note_bin)
 	make_flevent(data_FLdt, 129, 65536*(c+1))
